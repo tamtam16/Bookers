@@ -1,3 +1,4 @@
+
 <h1>Editing Book</h1>
 <%= form_for(@book) do |f| %>
   <div class="field">
@@ -13,4 +14,13 @@
   </div>
 <% end %>
 <%= link_to "Show", book_path(@book.id) %> |
-<a class="back" href="/books">Back</a>
+<a class="back" href="/books">Back</a><% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+  <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
